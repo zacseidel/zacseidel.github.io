@@ -1,0 +1,47 @@
+---
+layout: default
+title: Home
+wide: true
+---
+
+<div class="home-intro">
+  <h1>Hey, I'm Zac.</h1>
+  <p>I build things, read a lot, and write when something's worth saying. This is where I keep track of it all.</p>
+</div>
+
+<!-- Recent Projects -->
+<section class="home-section">
+  <div class="section-label">Projects</div>
+  <div class="card-grid">
+    {% assign projects = site.projects | sort: 'order' %}
+    {% for project in projects limit:4 %}
+    <a href="{{ project.url | relative_url }}" class="card" style="text-decoration:none;">
+      <div class="card-title">{{ project.title }}</div>
+      <div class="card-desc">{{ project.description }}</div>
+      <div class="card-meta">
+        {% if project.status %}<span class="tag">{{ project.status }}</span>{% endif %}
+        {% for t in project.tech %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <p style="margin-top: 1em;"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+</section>
+
+<!-- Recent Essays -->
+<section class="home-section">
+  <div class="section-label">Recent Essays</div>
+  <ul class="post-list">
+    {% assign essays = site.essays | sort: 'date' | reverse %}
+    {% for essay in essays limit:5 %}
+    <li class="post-item">
+      <div>
+        <a href="{{ essay.url | relative_url }}" class="post-item-title">{{ essay.title }}</a>
+        {% if essay.category %}<span class="post-item-category"> · {{ essay.category }}</span>{% endif %}
+      </div>
+      <span class="post-item-date">{{ essay.date | date: "%b %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  <p style="margin-top: 0.5em;"><a href="{{ '/essays/' | relative_url }}">All essays →</a></p>
+</section>

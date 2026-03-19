@@ -1,0 +1,24 @@
+---
+layout: default
+title: Projects
+wide: true
+---
+
+<div class="page-header">
+  <h1>Projects</h1>
+  <p style="color: var(--color-text-secondary); margin-top: 0.3em;">Things I've built — games, tools, and experiments.</p>
+</div>
+
+<div class="card-grid">
+  {% assign projects = site.projects | sort: 'order' %}
+  {% for project in projects %}
+  <a href="{{ project.url | relative_url }}" class="card" style="text-decoration:none;">
+    <div class="card-title">{{ project.title }}</div>
+    <div class="card-desc">{{ project.description }}</div>
+    <div class="card-meta">
+      {% if project.status %}<span class="tag">{{ project.status }}</span>{% endif %}
+      {% for t in project.tech %}<span class="tag">{{ t }}</span>{% endfor %}
+    </div>
+  </a>
+  {% endfor %}
+</div>

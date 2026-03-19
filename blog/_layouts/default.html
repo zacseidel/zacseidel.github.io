@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script>
+    // Apply saved theme immediately to prevent flash
+    (function() {
+      var t = localStorage.getItem('theme') || 'canopy';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="main-content {% if page.wide %}wide-content{% endif %}">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <script>
+    // Mobile nav toggle
+    var toggle = document.querySelector('.nav-toggle');
+    var nav = document.querySelector('.site-nav');
+    if (toggle) {
+      toggle.addEventListener('click', function() { nav.classList.toggle('open'); });
+    }
+
+    // Theme switcher
+    var dots = document.querySelectorAll('.theme-dot');
+    var saved = localStorage.getItem('theme') || 'canopy';
+
+    // Set initial active dot
+    dots.forEach(function(d) {
+      if (d.getAttribute('data-set') === saved) d.classList.add('active');
+      else d.classList.remove('active');
+    });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var theme = this.getAttribute('data-set');
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

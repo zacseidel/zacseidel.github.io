@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav">
+      <a href="{{ '/projects/' | relative_url }}" {% if page.url contains '/projects' %}class="active"{% endif %}>Projects</a>
+      <a href="{{ '/essays/' | relative_url }}" {% if page.url contains '/essays' %}class="active"{% endif %}>Essays</a>
+      <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a>
+      <a href="{{ '/now/' | relative_url }}" {% if page.url == '/now/' %}class="active"{% endif %}>Now</a>
+
+      <div class="theme-switcher" aria-label="Choose color theme">
+        <button class="theme-dot active" data-set="canopy" title="Canopy" aria-label="Canopy theme"></button>
+        <button class="theme-dot" data-set="shoreline" title="Shoreline" aria-label="Shoreline theme"></button>
+        <button class="theme-dot" data-set="golden-hour" title="Golden Hour" aria-label="Golden Hour theme"></button>
+      </div>
+    </nav>
+  </div>
+</header>

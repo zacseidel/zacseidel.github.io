@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article>
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <div class="article-meta">
+      <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+      {% if page.category %}<span class="tag">{{ page.category }}</span>{% endif %}
+      {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
+    </div>
+  </header>
+
+  <div class="article-content">
+    {{ content }}
+  </div>
+</article>

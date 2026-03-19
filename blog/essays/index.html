@@ -1,0 +1,32 @@
+---
+layout: default
+title: Essays
+---
+
+<div class="page-header">
+  <h1>Essays</h1>
+  <p style="color: var(--color-text-secondary); margin-top: 0.3em;">Writing about happiness, parenting, books, ideas, and whatever else is on my mind.</p>
+</div>
+
+{% assign categories = site.essays | map: 'category' | uniq | sort %}
+{% if categories.size > 0 %}
+<div style="margin-bottom: 2em;">
+  <span class="tag" style="cursor:default;">All</span>
+  {% for cat in categories %}
+    {% if cat %}<span class="tag" style="cursor:default;">{{ cat }}</span>{% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<ul class="post-list">
+  {% assign essays = site.essays | sort: 'date' | reverse %}
+  {% for essay in essays %}
+  <li class="post-item">
+    <div>
+      <a href="{{ essay.url | relative_url }}" class="post-item-title">{{ essay.title }}</a>
+      {% if essay.category %}<span class="post-item-category"> · {{ essay.category }}</span>{% endif %}
+    </div>
+    <span class="post-item-date">{{ essay.date | date: "%b %-d, %Y" }}</span>
+  </li>
+  {% endfor %}
+</ul>

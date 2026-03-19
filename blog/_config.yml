@@ -1,0 +1,42 @@
+title: "Zac S."
+description: "Projects, essays, and things I'm thinking about."
+url: "https://zacseidel.github.io"
+baseurl: ""
+author: "Zac S."
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:title/
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+  essays:
+    output: true
+    permalink: /essays/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "essays"
+    values:
+      layout: "essay"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
